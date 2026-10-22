@@ -2,7 +2,8 @@ from app.embedding_service import create_embedding
 from app.vector_store import search_chunks
 
 
-query = "What is an embedding?"
+query = "What is Retrieval-Augmented Generation?"
+
 
 print(f"Question: {query}")
 

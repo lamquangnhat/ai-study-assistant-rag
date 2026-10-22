@@ -1,3 +1,10 @@
 fastapi
 uvicorn[standard]
 pypdf
+sentence-transformers
+scikit-learn
+chromadb
+google-genai
+python-dotenv
+python-multipart
+pytest

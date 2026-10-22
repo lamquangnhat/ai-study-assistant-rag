@@ -1,0 +1,621 @@
+{
+  "project": "StudyMate AI",
+  "evaluation": {
+    "baseline": {
+      "total_questions": 7,
+      "retrieval_accuracy": 1.0,
+      "answer_accuracy": 1.0,
+      "results": [
+        {
+          "id": 1,
+          "question": "What is Retrieval-Augmented Generation?",
+          "expected_type": "answerable",
+          "retrieved_sources": 3,
+          "retrieval_correct": true,
+          "answer_correct": true,
+          "answer": "Based on the provided context, RAG stands for Retrieval-Augmented Generation. It is a system that first retrieves relevant information from an external knowledge base and then gives that context to a language model."
+        },
+        {
+          "id": 2,
+          "question": "What is the purpose of chunking documents?",
+          "expected_type": "answerable",
+          "retrieved_sources": 3,
+          "retrieval_correct": true,
+          "answer_correct": true,
+          "answer": "Based on the provided materials, chunking divides a complete lecture into smaller pieces so that retrieval can find specific sections efficiently."
+        },
+        {
+          "id": 3,
+          "question": "What are embeddings used for in a RAG system?",
+          "expected_type": "answerable",
+          "retrieved_sources": 3,
+          "retrieval_correct": true,
+          "answer_correct": true,
+          "answer": "Based on the provided context, embeddings are part of the simplified RAG pipeline (PDF → Text Extraction → Chunking → Embeddings → Vector Database → Semantic Search → Relevant Context → LLM → Answer), but the text does not explicitly define what embeddings are used for. Therefore, I could not find the specific usage of embeddings in the provided study materials."
+        },
+        {
+          "id": 4,
+          "question": "What is a vector database?",
+          "expected_type": "answerable",
+          "retrieved_sources": 2,
+          "retrieval_correct": true,
+          "answer_correct": true,
+          "answer": "Based on the provided text, a vector database is a database (such as ChromaDB) where vectors are stored. It compares the vector of a user's question with stored document vectors and returns relevant chunks."
+        },
+        {
+          "id": 5,
+          "question": "What is the capital of France?",
+          "expected_type": "unanswerable",
+          "retrieved_sources": 0,
+          "retrieval_correct": true,
+          "answer_correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 6,
+          "question": "Who is the president of the United States?",
+          "expected_type": "unanswerable",
+          "retrieved_sources": 0,
+          "retrieval_correct": true,
+          "answer_correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 7,
+          "question": "What is the tallest mountain in the world?",
+          "expected_type": "unanswerable",
+          "retrieved_sources": 0,
+          "retrieval_correct": true,
+          "answer_correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        }
+      ]
+    },
+    "retrieval_quality": {
+      "total_questions": 7,
+      "retrieval_quality": 1.0,
+      "results": [
+        {
+          "id": 1,
+          "question": "What is Retrieval-Augmented Generation?",
+          "expected_type": "answerable",
+          "matched_keywords": [
+            "retrieval",
+            "generation"
+          ],
+          "missing_keywords": [],
+          "keyword_coverage": 1.0,
+          "retrieval_correct": true,
+          "distances": [
+            1.003633737564087,
+            1.003633737564087,
+            1.1506682634353638
+          ]
+        },
+        {
+          "id": 2,
+          "question": "What is the purpose of chunking documents?",
+          "expected_type": "answerable",
+          "matched_keywords": [
+            "chunk",
+            "smaller"
+          ],
+          "missing_keywords": [],
+          "keyword_coverage": 1.0,
+          "retrieval_correct": true,
+          "distances": [
+            0.6920384168624878,
+            0.6920384168624878,
+            1.046701431274414
+          ]
+        },
+        {
+          "id": 3,
+          "question": "What are embeddings used for in a RAG system?",
+          "expected_type": "answerable",
+          "matched_keywords": [
+            "embedding",
+            "vector"
+          ],
+          "missing_keywords": [],
+          "keyword_coverage": 1.0,
+          "retrieval_correct": true,
+          "distances": [
+            1.113461971282959,
+            1.113461971282959,
+            1.1990861892700195
+          ]
+        },
+        {
+          "id": 4,
+          "question": "What is a vector database?",
+          "expected_type": "answerable",
+          "matched_keywords": [
+            "vector",
+            "database"
+          ],
+          "missing_keywords": [],
+          "keyword_coverage": 1.0,
+          "retrieval_correct": true,
+          "distances": [
+            1.104319453239441,
+            1.104319453239441,
+            1.5327426195144653
+          ]
+        },
+        {
+          "id": 5,
+          "question": "What is the capital of France?",
+          "expected_type": "unanswerable",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "keyword_coverage": 0,
+          "retrieval_correct": true,
+          "distances": [
+            1.9396765232086182,
+            1.9396765232086182,
+            1.9708259105682373
+          ]
+        },
+        {
+          "id": 6,
+          "question": "Who is the president of the United States?",
+          "expected_type": "unanswerable",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "keyword_coverage": 0,
+          "retrieval_correct": true,
+          "distances": [
+            1.8695259094238281,
+            1.8695259094238281,
+            1.9381756782531738
+          ]
+        },
+        {
+          "id": 7,
+          "question": "What is the tallest mountain in the world?",
+          "expected_type": "unanswerable",
+          "matched_keywords": [],
+          "missing_keywords": [],
+          "keyword_coverage": 0,
+          "retrieval_correct": true,
+          "distances": [
+            1.816174030303955,
+            1.816174030303955,
+            1.8810876607894897
+          ]
+        }
+      ]
+    },
+    "hard_questions": {
+      "total_questions": 10,
+      "completed": 10,
+      "llm_errors": 0,
+      "correct": 10,
+      "accuracy": 1.0,
+      "results": [
+        {
+          "id": 1,
+          "question": "How does StudyMate obtain information before generating an answer?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "sources": 3,
+          "correct": true,
+          "answer": "Based on your study materials, the system (RAG pipeline) obtains information by first extracting text from PDFs, breaking it into chunks, creating embeddings, storing them in a vector database, and using semantic search to find relevant context from the external knowledge base. This retrieved context is then sent to the language model along with the question to generate the final answer."
+        },
+        {
+          "id": 2,
+          "question": "Why are lecture documents divided into smaller pieces before semantic search?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "sources": 3,
+          "correct": true,
+          "answer": "Lecture documents are divided into smaller pieces (a process called chunking) so that retrieval can find specific sections efficiently. Additionally, chunk overlap helps prevent important information from being split awkwardly between two chunks."
+        },
+        {
+          "id": 3,
+          "question": "How do embeddings help the system find relevant study material?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "sources": 3,
+          "correct": true,
+          "answer": "An embedding converts text into a numerical vector. Texts with similar meanings have vectors that are close together in the embedding space. This allows semantic search to recognize when meanings are related (unlike a keyword search, which might treat texts with different words as unrelated), helping the system find relevant chunks by comparing the vector of a user's question with stored document vectors in a vector database."
+        },
+        {
+          "id": 4,
+          "question": "How does a vector database help retrieve relevant chunks?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "sources": 3,
+          "correct": true,
+          "answer": "A vector database stores the document vectors and compares the vector of a user's question against them using similarity search to return the relevant chunks."
+        },
+        {
+          "id": 5,
+          "question": "How does the complete RAG pipeline work from a PDF to the final answer?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "sources": 3,
+          "correct": true,
+          "answer": "Based on the provided study materials, the simplified RAG pipeline works through the following steps:\n\nPDF → Text Extraction → Chunking → Embeddings → Vector Database → Semantic Search → Relevant Context → LLM → Answer\n\nIn this process, the system first extracts text from the PDF, breaks it into chunks, creates embeddings, and stores them in a vector database. Through semantic search, it retrieves relevant context from an external knowledge base and then passes that context to a language model to generate the final answer."
+        },
+        {
+          "id": 6,
+          "question": "Which vector database should I use for storing financial transactions?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "sources": 0,
+          "correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 7,
+          "question": "According to the lecture, what is the capital of France?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "sources": 0,
+          "correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 8,
+          "question": "How do I cook pasta?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "sources": 0,
+          "correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 9,
+          "question": "What programming language is best for building mobile games?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "sources": 0,
+          "correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 10,
+          "question": "Can you explain how photosynthesis works?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "sources": 0,
+          "correct": true,
+          "answer": "I could not find the answer in the provided study materials."
+        }
+      ]
+    },
+    "expanded_dataset": {
+      "total_questions": 30,
+      "completed": 28,
+      "llm_errors": 2,
+      "correct": 26,
+      "accuracy": 0.9285714285714286,
+      "results": [
+        {
+          "id": 1,
+          "category": "direct",
+          "question": "What is Retrieval-Augmented Generation?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "Retrieval-Augmented Generation (RAG) is a system that combines information retrieval with text generation. It works by first retrieving relevant information from an external knowledge base and then providing that context to a language model to generate an answer."
+        },
+        {
+          "id": 2,
+          "category": "direct",
+          "question": "What is the purpose of chunking documents?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "The purpose of chunking is to divide a long lecture into smaller pieces so that retrieval can find specific sections efficiently. Additionally, chunk overlap helps prevent important information from being split awkwardly between two chunks."
+        },
+        {
+          "id": 3,
+          "category": "direct",
+          "question": "What are embeddings?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "An embedding converts a piece of text into a numerical vector. Texts that have similar meanings tend to have vectors that are close together in the embedding space, which allows semantic search to recognize related meanings even when the exact words differ."
+        },
+        {
+          "id": 4,
+          "category": "direct",
+          "question": "What is a vector database?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 1,
+          "answer": "A vector database (such as ChromaDB) is a database used to store vectors. It compares the vector of a user's question with the stored document vectors and returns the relevant chunks through a similarity search."
+        },
+        {
+          "id": 5,
+          "category": "direct",
+          "question": "What is semantic search?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "Semantic search is a search method that recognises when texts have related meanings, even if their specific words differ. It works by converting text into numerical vectors using an embedding model, where texts with similar meanings are positioned close together in the embedding space (unlike a keyword search, which might treat semantically similar questions with different words as completely different)."
+        },
+        {
+          "id": 6,
+          "category": "paraphrased",
+          "question": "How does StudyMate get useful information before asking the language model to answer?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "To get useful information before asking the language model, StudyMate uses the RAG (Retrieval-Augmented Generation) ingestion and question-answering pipeline:\n\n1. **Text Extraction:** Extracts text from lecture PDFs.\n2. **Chunking:** Breaks the text into smaller chunks.\n3. **Embeddings:** Creates embeddings for the chunks and the student's question (turning them into vector representations).\n4. **Vector Database:** Stores the text embeddings in a vector database (such as ChromaDB).\n5. **Semantic Search:** When a student asks a question, the system searches the database using question embeddings to retrieve the top, most relevant chunks of context."
+        },
+        {
+          "id": 7,
+          "category": "paraphrased",
+          "question": "Why does the system split lecture material into smaller sections?",
+          "expected_type": "answerable",
+          "status": "llm_error",
+          "correct": null,
+          "sources": null,
+          "answer": null,
+          "error": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+        },
+        {
+          "id": 8,
+          "category": "paraphrased",
+          "question": "How can the system recognize that two pieces of text have similar meanings?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "Hello! I am StudyMate AI, your AI Study Assistant. \n\nBased on your study materials, the system uses **embeddings** to recognize when two pieces of text have similar meanings. An embedding converts a piece of text into a numerical vector, and texts with similar meanings will have vectors that are close together in the embedding space. This allows for semantic search, which can recognize related meanings even when the exact words differ."
+        },
+        {
+          "id": 9,
+          "category": "paraphrased",
+          "question": "How does StudyMate locate useful passages from the stored lecture material?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "To locate useful passages from the stored lecture material, the system uses semantic search powered by RAG (Retrieval-Augmented Generation). \n\nThe process works through the following steps:\n1. **Document Ingestion:** Documents are converted into machine-readable text with page numbers.\n2. **Chunking:** Large lectures are divided into smaller, manageable pieces (chunks) with some overlap to prevent important information from being split awkwardly.\n3. **Embeddings & Vector Database:** The text is converted into embeddings and stored in a vector database.\n4. **Semantic Search:** When a question is asked, the system searches the database to find relevant context passages, which are then sent to the language model along with the question to generate the final answer (complete with source metadata like the lecture and page). \n\n*(Source: Week01_AI_Study_Assistant_Lecture.pdf, Pages 2, 3, and 4)*"
+        },
+        {
+          "id": 10,
+          "category": "paraphrased",
+          "question": "What happens after relevant study information has been retrieved?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "After the relevant lecture context is retrieved, it is combined with the user's question and sent to the language model (LLM) to generate the final answer."
+        },
+        {
+          "id": 11,
+          "category": "multi_concept",
+          "question": "How do chunking and embeddings work together in a RAG system?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "Based on the provided study materials, text extraction converts PDFs into text, which is then broken down into chunks. An embedding model converts each piece of text into a numerical vector. Texts with similar meanings produce vectors that are close together in the embedding space. These vectors are stored in a vector database, which compares a user's question embedding against the stored document vectors using similarity search to retrieve the most relevant text chunks to pass to the language model for generating an answer."
+        },
+        {
+          "id": 12,
+          "category": "multi_concept",
+          "question": "How do embeddings and a vector database work together to support semantic search?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "An embedding converts text into a numerical vector, where texts with similar meanings have vectors that are close together in the embedding space. The vector database then stores these vectors (such as in ChromaDB), compares the vector of a user's question with the stored document vectors using similarity search, and returns the most relevant chunks."
+        },
+        {
+          "id": 13,
+          "category": "multi_concept",
+          "question": "How does information move from a PDF through the retrieval process before reaching the LLM?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "Based on the provided study materials, information moves through the pipeline as follows:\n\n1. **Text Extraction:** Documents (like PDFs) are converted into machine-readable text.\n2. **Chunking:** The extracted text is divided into smaller pieces (chunks) with some overlap to prevent information from being split awkwardly.\n3. **Embeddings:** Embeddings are created from these chunks.\n4. **Vector Database / Storage:** The chunks and their embeddings are stored in a vector database (such as ChromaDB).\n5. **Semantic Search:** When a student asks a question, the question is also embedded to search the database and retrieve the most relevant top chunks.\n6. **Relevant Context:** These retrieved chunks are then passed as context to the LLM along with the student's question to generate the final answer."
+        },
+        {
+          "id": 14,
+          "category": "multi_concept",
+          "question": "Why are retrieved chunks provided to the language model instead of asking the model to answer without them?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": false,
+          "sources": 3,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 15,
+          "category": "multi_concept",
+          "question": "How do retrieval and generation work together in Retrieval-Augmented Generation?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "In Retrieval-Augmented Generation (RAG), retrieval and generation work together by first having the system search and retrieve relevant information from an external knowledge base (such as the student's course materials). That retrieved context is then provided to a language model (LLM), which uses it as evidence to generate an answer."
+        },
+        {
+          "id": 16,
+          "category": "out_of_scope",
+          "question": "What is the capital of France?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 0,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 17,
+          "category": "out_of_scope",
+          "question": "Who is the president of the United States?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 0,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 18,
+          "category": "out_of_scope",
+          "question": "How do I cook pasta?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 0,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 19,
+          "category": "out_of_scope",
+          "question": "What programming language is best for building mobile games?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 0,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 20,
+          "category": "out_of_scope",
+          "question": "Can you explain how photosynthesis works?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 0,
+          "answer": "I could not find the answer in the provided study materials."
+        },
+        {
+          "id": 21,
+          "category": "ambiguous",
+          "question": "Why is retrieval important?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "A RAG system retrieves course material before generating an answer so that it can search the student's own materials and use the retrieved passages as evidence, rather than relying solely on the AI's general knowledge."
+        },
+        {
+          "id": 22,
+          "category": "ambiguous",
+          "question": "What does the system search for?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "The system searches the vector database (ChromaDB) by comparing the vector of a user's question with stored document vectors to retrieve relevant text chunks."
+        },
+        {
+          "id": 23,
+          "category": "ambiguous",
+          "question": "What does the database contain?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 2,
+          "answer": "Based on the provided study materials, the vector database contains vectors (which are numerical representations of text) and is used to store them. It compares the vector of a user's question with these stored document vectors to return relevant chunks."
+        },
+        {
+          "id": 24,
+          "category": "ambiguous",
+          "question": "Why does the system use vectors?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 1,
+          "answer": "The system uses vectors because an embedding converts a piece of text into a numerical vector, allowing texts with similar meanings to have vectors that are close together in the embedding space. This enables semantic search to recognize related meanings even when the exact words differ (unlike a keyword search). Additionally, these vectors are stored in a vector database so the system can compare a user's question vector with stored document vectors to find and return relevant chunks."
+        },
+        {
+          "id": 25,
+          "category": "ambiguous",
+          "question": "What happens to the information before the answer is generated?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "Based on the provided study materials, after retrieval, the selected chunks of information are placed into the prompt and sent to the language model to generate the final answer."
+        },
+        {
+          "id": 26,
+          "category": "hard",
+          "question": "Why might a RAG system fail to answer a question even when the language model itself knows the answer?",
+          "expected_type": "unanswerable",
+          "status": "completed",
+          "correct": false,
+          "sources": 3,
+          "answer": "A RAG system might fail because of its own limitations during the retrieval or processing stages, which include:\n\n* **Poor PDF extraction:** Scanned PDFs containing images instead of selectable text.\n* **Bad chunking:** Chunks that are too large or too small, reducing retrieval quality.\n* **Weak embeddings:** Preventing relevant text from being properly retrieved.\n* **Irrelevant retrieval:** Causing the LLM to receive the wrong context.\n* **Hallucination:** Where the model still generates unsupported information."
+        },
+        {
+          "id": 27,
+          "category": "hard",
+          "question": "What is the difference between keyword search and semantic search according to the study materials?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "According to the study materials, keyword search may treat questions with different words as completely different even if they have similar meanings. In contrast, semantic search can recognize when the meanings of different texts are related because it uses embeddings, where texts with similar meanings have vectors that are close together in the embedding space."
+        },
+        {
+          "id": 28,
+          "category": "hard",
+          "question": "Why can chunk overlap help preserve information when documents are split?",
+          "expected_type": "answerable",
+          "status": "llm_error",
+          "correct": null,
+          "sources": null,
+          "answer": null,
+          "error": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+        },
+        {
+          "id": 29,
+          "category": "hard",
+          "question": "Why does the system need a vector representation of the user's question?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "The system converts the user's question into a vector so it can perform a similarity search in the vector database. This allows the database to compare the question's vector with stored document vectors to find and return relevant text chunks."
+        },
+        {
+          "id": 30,
+          "category": "hard",
+          "question": "Why is using the student's own study materials useful in a RAG-based study assistant?",
+          "expected_type": "answerable",
+          "status": "completed",
+          "correct": true,
+          "sources": 3,
+          "answer": "Using the student's own study materials is useful because instead of relying on general knowledge (like a normal chatbot), a RAG-based study assistant searches the student's specific materials and uses those retrieved passages as evidence to generate accurate answers based directly on their course notes."
+        }
+      ]
+    }
+  },
+  "findings": {
+    "strengths": [
+      "Direct questions were answered successfully.",
+      "Paraphrased questions were handled successfully.",
+      "Out-of-scope questions were rejected correctly.",
+      "Semantic retrieval returned relevant lecture chunks.",
+      "Duplicate test-document retrieval was removed."
+    ],
+    "limitations": [
+      "Multi-concept questions can be more difficult.",
+      "Hard reasoning questions can cause generation failures.",
+      "Gemini availability can affect evaluation through temporary 503 errors.",
+      "The evaluation dataset is still relatively small."
+    ],
+    "threshold": {
+      "production_threshold": 1.5,
+      "best_threshold_on_current_small_dataset": 1.2,
+      "note": "The production threshold remains 1.5 because several thresholds performed perfectly on the small benchmark."
+    }
+  }
+}

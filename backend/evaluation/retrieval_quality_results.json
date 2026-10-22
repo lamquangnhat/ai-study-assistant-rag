@@ -1,0 +1,116 @@
+{
+  "total_questions": 7,
+  "retrieval_quality": 1.0,
+  "results": [
+    {
+      "id": 1,
+      "question": "What is Retrieval-Augmented Generation?",
+      "expected_type": "answerable",
+      "matched_keywords": [
+        "retrieval",
+        "generation"
+      ],
+      "missing_keywords": [],
+      "keyword_coverage": 1.0,
+      "retrieval_correct": true,
+      "distances": [
+        1.003633737564087,
+        1.003633737564087,
+        1.1506682634353638
+      ]
+    },
+    {
+      "id": 2,
+      "question": "What is the purpose of chunking documents?",
+      "expected_type": "answerable",
+      "matched_keywords": [
+        "chunk",
+        "smaller"
+      ],
+      "missing_keywords": [],
+      "keyword_coverage": 1.0,
+      "retrieval_correct": true,
+      "distances": [
+        0.6920384168624878,
+        0.6920384168624878,
+        1.046701431274414
+      ]
+    },
+    {
+      "id": 3,
+      "question": "What are embeddings used for in a RAG system?",
+      "expected_type": "answerable",
+      "matched_keywords": [
+        "embedding",
+        "vector"
+      ],
+      "missing_keywords": [],
+      "keyword_coverage": 1.0,
+      "retrieval_correct": true,
+      "distances": [
+        1.113461971282959,
+        1.113461971282959,
+        1.1990861892700195
+      ]
+    },
+    {
+      "id": 4,
+      "question": "What is a vector database?",
+      "expected_type": "answerable",
+      "matched_keywords": [
+        "vector",
+        "database"
+      ],
+      "missing_keywords": [],
+      "keyword_coverage": 1.0,
+      "retrieval_correct": true,
+      "distances": [
+        1.104319453239441,
+        1.104319453239441,
+        1.5327426195144653
+      ]
+    },
+    {
+      "id": 5,
+      "question": "What is the capital of France?",
+      "expected_type": "unanswerable",
+      "matched_keywords": [],
+      "missing_keywords": [],
+      "keyword_coverage": 0,
+      "retrieval_correct": true,
+      "distances": [
+        1.9396765232086182,
+        1.9396765232086182,
+        1.9708259105682373
+      ]
+    },
+    {
+      "id": 6,
+      "question": "Who is the president of the United States?",
+      "expected_type": "unanswerable",
+      "matched_keywords": [],
+      "missing_keywords": [],
+      "keyword_coverage": 0,
+      "retrieval_correct": true,
+      "distances": [
+        1.8695259094238281,
+        1.8695259094238281,
+        1.9381756782531738
+      ]
+    },
+    {
+      "id": 7,
+      "question": "What is the tallest mountain in the world?",
+      "expected_type": "unanswerable",
+      "matched_keywords": [],
+      "missing_keywords": [],
+      "keyword_coverage": 0,
+      "retrieval_correct": true,
+      "distances": [
+        1.816174030303955,
+        1.816174030303955,
+        1.8810876607894897
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "total_questions": 10,
+  "completed": 10,
+  "llm_errors": 0,
+  "correct": 10,
+  "accuracy": 1.0,
+  "results": [
+    {
+      "id": 1,
+      "question": "How does StudyMate obtain information before generating an answer?",
+      "expected_type": "answerable",
+      "status": "completed",
+      "sources": 3,
+      "correct": true,
+      "answer": "Based on your study materials, the system (RAG pipeline) obtains information by first extracting text from PDFs, breaking it into chunks, creating embeddings, storing them in a vector database, and using semantic search to find relevant context from the external knowledge base. This retrieved context is then sent to the language model along with the question to generate the final answer."
+    },
+    {
+      "id": 2,
+      "question": "Why are lecture documents divided into smaller pieces before semantic search?",
+      "expected_type": "answerable",
+      "status": "completed",
+      "sources": 3,
+      "correct": true,
+      "answer": "Lecture documents are divided into smaller pieces (a process called chunking) so that retrieval can find specific sections efficiently. Additionally, chunk overlap helps prevent important information from being split awkwardly between two chunks."
+    },
+    {
+      "id": 3,
+      "question": "How do embeddings help the system find relevant study material?",
+      "expected_type": "answerable",
+      "status": "completed",
+      "sources": 3,
+      "correct": true,
+      "answer": "An embedding converts text into a numerical vector. Texts with similar meanings have vectors that are close together in the embedding space. This allows semantic search to recognize when meanings are related (unlike a keyword search, which might treat texts with different words as unrelated), helping the system find relevant chunks by comparing the vector of a user's question with stored document vectors in a vector database."
+    },
+    {
+      "id": 4,
+      "question": "How does a vector database help retrieve relevant chunks?",
+      "expected_type": "answerable",
+      "status": "completed",
+      "sources": 3,
+      "correct": true,
+      "answer": "A vector database stores the document vectors and compares the vector of a user's question against them using similarity search to return the relevant chunks."
+    },
+    {
+      "id": 5,
+      "question": "How does the complete RAG pipeline work from a PDF to the final answer?",
+      "expected_type": "answerable",
+      "status": "completed",
+      "sources": 3,
+      "correct": true,
+      "answer": "Based on the provided study materials, the simplified RAG pipeline works through the following steps:\n\nPDF → Text Extraction → Chunking → Embeddings → Vector Database → Semantic Search → Relevant Context → LLM → Answer\n\nIn this process, the system first extracts text from the PDF, breaks it into chunks, creates embeddings, and stores them in a vector database. Through semantic search, it retrieves relevant context from an external knowledge base and then passes that context to a language model to generate the final answer."
+    },
+    {
+      "id": 6,
+      "question": "Which vector database should I use for storing financial transactions?",
+      "expected_type": "unanswerable",
+      "status": "completed",
+      "sources": 0,
+      "correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    },
+    {
+      "id": 7,
+      "question": "According to the lecture, what is the capital of France?",
+      "expected_type": "unanswerable",
+      "status": "completed",
+      "sources": 0,
+      "correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    },
+    {
+      "id": 8,
+      "question": "How do I cook pasta?",
+      "expected_type": "unanswerable",
+      "status": "completed",
+      "sources": 0,
+      "correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    },
+    {
+      "id": 9,
+      "question": "What programming language is best for building mobile games?",
+      "expected_type": "unanswerable",
+      "status": "completed",
+      "sources": 0,
+      "correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    },
+    {
+      "id": 10,
+      "question": "Can you explain how photosynthesis works?",
+      "expected_type": "unanswerable",
+      "status": "completed",
+      "sources": 0,
+      "correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    }
+  ]
+}

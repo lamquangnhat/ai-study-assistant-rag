@@ -1,0 +1,70 @@
+{
+  "total_questions": 7,
+  "retrieval_accuracy": 1.0,
+  "answer_accuracy": 1.0,
+  "results": [
+    {
+      "id": 1,
+      "question": "What is Retrieval-Augmented Generation?",
+      "expected_type": "answerable",
+      "retrieved_sources": 3,
+      "retrieval_correct": true,
+      "answer_correct": true,
+      "answer": "Based on the provided context, RAG stands for Retrieval-Augmented Generation. It is a system that first retrieves relevant information from an external knowledge base and then gives that context to a language model."
+    },
+    {
+      "id": 2,
+      "question": "What is the purpose of chunking documents?",
+      "expected_type": "answerable",
+      "retrieved_sources": 3,
+      "retrieval_correct": true,
+      "answer_correct": true,
+      "answer": "Based on the provided materials, chunking divides a complete lecture into smaller pieces so that retrieval can find specific sections efficiently."
+    },
+    {
+      "id": 3,
+      "question": "What are embeddings used for in a RAG system?",
+      "expected_type": "answerable",
+      "retrieved_sources": 3,
+      "retrieval_correct": true,
+      "answer_correct": true,
+      "answer": "Based on the provided context, embeddings are part of the simplified RAG pipeline (PDF → Text Extraction → Chunking → Embeddings → Vector Database → Semantic Search → Relevant Context → LLM → Answer), but the text does not explicitly define what embeddings are used for. Therefore, I could not find the specific usage of embeddings in the provided study materials."
+    },
+    {
+      "id": 4,
+      "question": "What is a vector database?",
+      "expected_type": "answerable",
+      "retrieved_sources": 2,
+      "retrieval_correct": true,
+      "answer_correct": true,
+      "answer": "Based on the provided text, a vector database is a database (such as ChromaDB) where vectors are stored. It compares the vector of a user's question with stored document vectors and returns relevant chunks."
+    },
+    {
+      "id": 5,
+      "question": "What is the capital of France?",
+      "expected_type": "unanswerable",
+      "retrieved_sources": 0,
+      "retrieval_correct": true,
+      "answer_correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    },
+    {
+      "id": 6,
+      "question": "Who is the president of the United States?",
+      "expected_type": "unanswerable",
+      "retrieved_sources": 0,
+      "retrieval_correct": true,
+      "answer_correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    },
+    {
+      "id": 7,
+      "question": "What is the tallest mountain in the world?",
+      "expected_type": "unanswerable",
+      "retrieved_sources": 0,
+      "retrieval_correct": true,
+      "answer_correct": true,
+      "answer": "I could not find the answer in the provided study materials."
+    }
+  ]
+}

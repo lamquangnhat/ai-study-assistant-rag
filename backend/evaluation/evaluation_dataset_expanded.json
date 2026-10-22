@@ -1,0 +1,187 @@
+[
+  {
+    "id": 1,
+    "category": "direct",
+    "question": "What is Retrieval-Augmented Generation?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 2,
+    "category": "direct",
+    "question": "What is the purpose of chunking documents?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 3,
+    "category": "direct",
+    "question": "What are embeddings?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 4,
+    "category": "direct",
+    "question": "What is a vector database?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 5,
+    "category": "direct",
+    "question": "What is semantic search?",
+    "expected_type": "answerable"
+  },
+
+  {
+    "id": 6,
+    "category": "paraphrased",
+    "question": "How does StudyMate get useful information before asking the language model to answer?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 7,
+    "category": "paraphrased",
+    "question": "Why does the system split lecture material into smaller sections?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 8,
+    "category": "paraphrased",
+    "question": "How can the system recognize that two pieces of text have similar meanings?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 9,
+    "category": "paraphrased",
+    "question": "How does StudyMate locate useful passages from the stored lecture material?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 10,
+    "category": "paraphrased",
+    "question": "What happens after relevant study information has been retrieved?",
+    "expected_type": "answerable"
+  },
+
+  {
+    "id": 11,
+    "category": "multi_concept",
+    "question": "How do chunking and embeddings work together in a RAG system?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 12,
+    "category": "multi_concept",
+    "question": "How do embeddings and a vector database work together to support semantic search?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 13,
+    "category": "multi_concept",
+    "question": "How does information move from a PDF through the retrieval process before reaching the LLM?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 14,
+    "category": "multi_concept",
+    "question": "Why are retrieved chunks provided to the language model instead of asking the model to answer without them?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 15,
+    "category": "multi_concept",
+    "question": "How do retrieval and generation work together in Retrieval-Augmented Generation?",
+    "expected_type": "answerable"
+  },
+
+  {
+    "id": 16,
+    "category": "out_of_scope",
+    "question": "What is the capital of France?",
+    "expected_type": "unanswerable"
+  },
+  {
+    "id": 17,
+    "category": "out_of_scope",
+    "question": "Who is the president of the United States?",
+    "expected_type": "unanswerable"
+  },
+  {
+    "id": 18,
+    "category": "out_of_scope",
+    "question": "How do I cook pasta?",
+    "expected_type": "unanswerable"
+  },
+  {
+    "id": 19,
+    "category": "out_of_scope",
+    "question": "What programming language is best for building mobile games?",
+    "expected_type": "unanswerable"
+  },
+  {
+    "id": 20,
+    "category": "out_of_scope",
+    "question": "Can you explain how photosynthesis works?",
+    "expected_type": "unanswerable"
+  },
+
+  {
+    "id": 21,
+    "category": "ambiguous",
+    "question": "Why is retrieval important?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 22,
+    "category": "ambiguous",
+    "question": "What does the system search for?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 23,
+    "category": "ambiguous",
+    "question": "What does the database contain?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 24,
+    "category": "ambiguous",
+    "question": "Why does the system use vectors?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 25,
+    "category": "ambiguous",
+    "question": "What happens to the information before the answer is generated?",
+    "expected_type": "answerable"
+  },
+
+  {
+    "id": 26,
+    "category": "hard",
+    "question": "Why might a RAG system fail to answer a question even when the language model itself knows the answer?",
+    "expected_type": "unanswerable"
+  },
+  {
+    "id": 27,
+    "category": "hard",
+    "question": "What is the difference between keyword search and semantic search according to the study materials?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 28,
+    "category": "hard",
+    "question": "Why can chunk overlap help preserve information when documents are split?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 29,
+    "category": "hard",
+    "question": "Why does the system need a vector representation of the user's question?",
+    "expected_type": "answerable"
+  },
+  {
+    "id": 30,
+    "category": "hard",
+    "question": "Why is using the student's own study materials useful in a RAG-based study assistant?",
+    "expected_type": "answerable"
+  }
+]

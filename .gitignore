@@ -6,4 +6,5 @@ chroma_db/
 data/documents/
 data/processed/
 node_modules/
-dist/
+dist/.venv_backup/
+.venv_backup/

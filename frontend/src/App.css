@@ -1,0 +1,702 @@
+/* =========================
+   Global
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+button,
+textarea,
+input {
+  font-family: inherit;
+}
+
+
+/* =========================
+   App
+   ========================= */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================
+   Header
+   ========================= */
+
+.header {
+  background: white;
+  border-bottom: 1px solid #ddd;
+
+  padding: 20px 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header p {
+  margin: 5px 0 0;
+  color: #666;
+}
+
+
+/* =========================
+   Clear Chat
+   ========================= */
+
+.clear-button {
+  padding: 9px 16px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  background: white;
+  color: #333;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.clear-button:hover {
+  background: #f5f5f5;
+}
+
+.clear-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Main Container
+   ========================= */
+
+.chat-container {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 20px;
+}
+
+
+/* =========================
+   Section Header
+   ========================= */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.section-header p {
+  margin: 6px 0 0;
+
+  color: #666;
+
+  font-size: 14px;
+}
+
+.document-count {
+  padding: 6px 10px;
+
+  border-radius: 20px;
+
+  background: #f0f1f3;
+
+  color: #555;
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+
+/* =========================
+   Documents Section
+   ========================= */
+
+.documents-section {
+  background: white;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   Document List
+   ========================= */
+
+.document-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.document-card {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 14px;
+
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+
+  background: #fafafa;
+}
+
+.document-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.document-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #f0f1f3;
+
+  font-size: 20px;
+}
+
+.document-details {
+  min-width: 0;
+}
+
+.document-name {
+  font-size: 14px;
+
+  font-weight: bold;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.document-meta {
+  margin-top: 4px;
+
+  color: #777;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   Delete Button
+   ========================= */
+
+.delete-button {
+  flex-shrink: 0;
+
+  padding: 8px 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 7px;
+
+  background: white;
+
+  color: #555;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #f1f1f1;
+}
+
+.delete-button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Empty Documents
+   ========================= */
+
+.empty-documents {
+  text-align: center;
+
+  padding: 35px 20px;
+
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+
+  background: #fafafa;
+}
+
+.empty-icon {
+  font-size: 32px;
+
+  margin-bottom: 8px;
+}
+
+.empty-documents h3 {
+  margin: 5px 0;
+
+  font-size: 16px;
+}
+
+.empty-documents p {
+  margin: 5px 0;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   Loading Documents
+   ========================= */
+
+.documents-loading {
+  padding: 25px;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   Upload Section
+   ========================= */
+
+.upload-section {
+  background: white;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  padding: 20px;
+
+  margin-bottom: 30px;
+}
+
+.upload-header h2 {
+  margin: 0;
+
+  font-size: 20px;
+}
+
+.upload-header p {
+  margin: 6px 0 18px;
+
+  color: #666;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   Upload Controls
+   ========================= */
+
+/* =========================
+   Upload Controls
+   ========================= */
+
+.upload-controls {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.upload-controls input[type="file"] {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 8px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  background: #fafafa;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.upload-controls input[type="file"]::file-selector-button {
+  margin-right: 10px;
+
+  padding: 8px 14px;
+
+  border: 1px solid #ccc;
+  border-radius: 7px;
+
+  background: white;
+
+  color: #333;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.upload-controls input[type="file"]::file-selector-button:hover {
+  background: #f1f1f1;
+}
+
+
+/* =========================
+   Upload Button
+   ========================= */
+
+.upload-button {
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #222;
+  color: white;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  background: #333;
+}
+
+.upload-button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Selected File
+   ========================= */
+
+.selected-file {
+  margin-top: 12px;
+
+  font-size: 14px;
+
+  color: #555;
+}
+
+
+/* =========================
+   Upload Message
+   ========================= */
+
+.upload-message {
+  margin-top: 12px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  background: #f3f4f6;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   Messages
+   ========================= */
+
+.messages {
+  flex: 1;
+}
+
+.welcome {
+  text-align: center;
+
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  color: #666;
+}
+
+.welcome h2 {
+  color: #333;
+}
+
+
+/* =========================
+   Individual Message
+   ========================= */
+
+.message {
+  margin-bottom: 24px;
+
+  max-width: 80%;
+}
+
+.message.user {
+  margin-left: auto;
+}
+
+.message-label {
+  font-size: 13px;
+
+  font-weight: bold;
+
+  margin-bottom: 6px;
+}
+
+
+/* =========================
+   Message Content
+   ========================= */
+
+.message-content {
+  padding: 14px 16px;
+
+  border-radius: 12px;
+
+  line-height: 1.6;
+
+  white-space: pre-wrap;
+}
+
+.message.user .message-content {
+  background: #e8f0fe;
+}
+
+.message.assistant .message-content {
+  background: white;
+
+  border: 1px solid #ddd;
+}
+
+
+/* =========================
+   Sources
+   ========================= */
+
+.sources {
+  margin-top: 8px;
+
+  padding: 10px;
+
+  background: #fafafa;
+
+  border-left: 3px solid #999;
+
+  font-size: 13px;
+}
+
+.sources-header {
+  margin-bottom: 8px;
+}
+
+.source {
+  margin-top: 8px;
+}
+
+.source-name {
+  font-weight: 500;
+}
+
+.source-details {
+  margin-top: 3px;
+
+  color: #777;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   Question Input
+   ========================= */
+
+.input-area {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.input-area textarea {
+  flex: 1;
+
+  resize: none;
+
+  padding: 14px;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+.input-area textarea:focus {
+  border-color: #888;
+}
+
+.input-area button {
+  width: 100px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #222;
+  color: white;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.input-area button:hover {
+  background: #333;
+}
+
+.input-area button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 700px) {
+
+  .header {
+    padding: 16px 20px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .header p {
+    font-size: 13px;
+  }
+
+  .chat-container {
+    padding: 20px 12px;
+  }
+
+  .section-header {
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+  .document-card {
+    align-items: flex-start;
+  }
+
+  .document-info {
+    min-width: 0;
+  }
+
+  .document-name {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .upload-controls {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .upload-button {
+    width: 100%;
+  }
+
+  .message {
+    max-width: 95%;
+  }
+
+  .input-area {
+    flex-direction: column;
+  }
+
+  .input-area button {
+    width: 100%;
+
+    height: 45px;
+  }
+
+  .clear-button {
+    padding: 7px 10px;
+
+    font-size: 12px;
+  }
+}

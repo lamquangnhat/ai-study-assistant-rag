@@ -1,10 +1,14 @@
 .venv/
+.venv_backup/
 __pycache__/
 *.pyc
+.pytest_cache/
+
 .env
+
 chroma_db/
 data/documents/
 data/processed/
+
 node_modules/
-dist/.venv_backup/
-.venv_backup/
+dist/

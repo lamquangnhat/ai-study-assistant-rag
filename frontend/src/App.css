@@ -6,8 +6,15 @@
   box-sizing: border-box;
 }
 
-body {
+html,
+body,
+#root {
   margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
   font-family: Arial, sans-serif;
   background: #f5f7fb;
   color: #222;
@@ -26,62 +33,46 @@ input {
 
 .app {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 
 /* =========================
-   Header
+   Fixed Header
    ========================= */
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 1000;
+
   background: white;
+
   border-bottom: 1px solid #ddd;
 
   padding: 20px 40px;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.header-content {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
 }
 
 .header h1 {
   margin: 0;
+
   font-size: 28px;
 }
 
 .header p {
   margin: 5px 0 0;
+
   color: #666;
-}
-
-
-/* =========================
-   Clear Chat
-   ========================= */
-
-.clear-button {
-  padding: 9px 16px;
-
-  border: 1px solid #ccc;
-  border-radius: 8px;
-
-  background: white;
-  color: #333;
-
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-.clear-button:hover {
-  background: #f5f5f5;
-}
-
-.clear-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 
 
@@ -95,12 +86,7 @@ input {
 
   margin: 0 auto;
 
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 30px 20px;
+  padding: 125px 20px 190px;
 }
 
 
@@ -110,6 +96,7 @@ input {
 
 .section-header {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -118,6 +105,7 @@ input {
 
 .section-header h2 {
   margin: 0;
+
   font-size: 20px;
 }
 
@@ -166,6 +154,7 @@ input {
 
 .document-list {
   display: flex;
+
   flex-direction: column;
 
   gap: 10px;
@@ -204,6 +193,7 @@ input {
   flex-shrink: 0;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -356,10 +346,6 @@ input {
    Upload Controls
    ========================= */
 
-/* =========================
-   Upload Controls
-   ========================= */
-
 .upload-controls {
   display: flex;
 
@@ -418,6 +404,7 @@ input {
   border-radius: 8px;
 
   background: #222;
+
   color: white;
 
   font-weight: bold;
@@ -471,13 +458,14 @@ input {
    ========================= */
 
 .messages {
-  flex: 1;
+  width: 100%;
 }
 
 .welcome {
   text-align: center;
 
   margin-top: 50px;
+
   margin-bottom: 50px;
 
   color: #666;
@@ -574,25 +562,50 @@ input {
 
 
 /* =========================
-   Question Input
+   Fixed Question Bar
    ========================= */
 
+.input-bar {
+  position: fixed;
+
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 1000;
+
+  background: white;
+
+  border-top: 1px solid #ddd;
+
+  padding: 15px 20px;
+}
+
 .input-area {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
   display: flex;
 
-  gap: 10px;
+  align-items: stretch;
 
-  margin-top: 20px;
+  gap: 10px;
 }
 
 .input-area textarea {
   flex: 1;
+
+  min-width: 0;
 
   resize: none;
 
   padding: 14px;
 
   border: 1px solid #ccc;
+
   border-radius: 10px;
 
   font-size: 15px;
@@ -604,26 +617,73 @@ input {
   border-color: #888;
 }
 
-.input-area button {
-  width: 100px;
 
-  border: none;
+/* =========================
+   Input Buttons
+   ========================= */
+
+.input-buttons {
+  display: flex;
+
+  align-items: stretch;
+
+  gap: 8px;
+}
+
+.input-buttons button {
+  min-width: 85px;
+
   border-radius: 10px;
-
-  background: #222;
-  color: white;
 
   font-weight: bold;
 
   cursor: pointer;
 }
 
-.input-area button:hover {
+
+/* =========================
+   Ask Button
+   ========================= */
+
+.ask-button {
+  border: none;
+
+  background: #222;
+
+  color: white;
+}
+
+.ask-button:hover {
   background: #333;
 }
 
-.input-area button:disabled {
+.ask-button:disabled {
   opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   Clear Chat
+   ========================= */
+
+.clear-button {
+  padding: 0 14px;
+
+  border: 1px solid #ccc;
+
+  background: white;
+
+  color: #333;
+}
+
+.clear-button:hover {
+  background: #f5f5f5;
+}
+
+.clear-button:disabled {
+  opacity: 0.4;
 
   cursor: not-allowed;
 }
@@ -648,7 +708,7 @@ input {
   }
 
   .chat-container {
-    padding: 20px 12px;
+    padding: 105px 12px 175px;
   }
 
   .section-header {
@@ -667,6 +727,7 @@ input {
 
   .document-name {
     white-space: normal;
+
     overflow-wrap: anywhere;
   }
 
@@ -684,19 +745,27 @@ input {
     max-width: 95%;
   }
 
+  .input-bar {
+    padding: 10px 12px;
+  }
+
   .input-area {
     flex-direction: column;
+
+    gap: 8px;
   }
 
-  .input-area button {
+  .input-area textarea {
     width: 100%;
-
-    height: 45px;
   }
 
-  .clear-button {
-    padding: 7px 10px;
+  .input-buttons {
+    width: 100%;
+  }
 
-    font-size: 12px;
+  .input-buttons button {
+    flex: 1;
+
+    min-height: 42px;
   }
 }

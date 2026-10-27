@@ -52,7 +52,6 @@ function App() {
     }
   };
 
-  // Load documents when page opens
   useEffect(() => {
     loadDocuments();
   }, []);
@@ -76,8 +75,8 @@ function App() {
 
     const userQuestion = question.trim();
 
-// Save the conversation history BEFORE adding
-// the current question.
+    // Save conversation history BEFORE adding
+    // the current question.
     const conversationHistory = messages.map((message) => ({
       role: message.role,
       content: message.content,
@@ -199,7 +198,6 @@ function App() {
         fileInput.value = "";
       }
 
-      // Refresh document list
       await loadDocuments();
     } catch (error) {
       console.error(error);
@@ -244,7 +242,6 @@ function App() {
         );
       }
 
-      // Remove from UI immediately
       setDocuments((previous) =>
         previous.filter(
           (document) =>
@@ -275,22 +272,17 @@ function App() {
     <div className="app">
 
       {/* =========================
-          Header
+          Fixed Header
       ========================= */}
 
       <header className="header">
-        <div>
+
+        <div className="header-content">
           <h1>StudyMate AI</h1>
+
           <p>Your AI Study Assistant</p>
         </div>
 
-        <button
-          className="clear-button"
-          onClick={clearChat}
-          disabled={messages.length === 0}
-        >
-          Clear Chat
-        </button>
       </header>
 
       {/* =========================
@@ -306,6 +298,7 @@ function App() {
         <section className="documents-section">
 
           <div className="section-header">
+
             <div>
               <h2>📚 My Study Materials</h2>
 
@@ -321,6 +314,7 @@ function App() {
                 ? "document"
                 : "documents"}
             </span>
+
           </div>
 
           {/* Loading */}
@@ -336,6 +330,7 @@ function App() {
           {!loadingDocuments &&
             documents.length === 0 && (
               <div className="empty-documents">
+
                 <div className="empty-icon">
                   📄
                 </div>
@@ -348,6 +343,7 @@ function App() {
                   Upload a PDF lecture below to
                   start studying.
                 </p>
+
               </div>
             )}
 
@@ -419,12 +415,14 @@ function App() {
         <section className="upload-section">
 
           <div className="upload-header">
+
             <h2>Upload New PDF</h2>
 
             <p>
               Add a new lecture to your StudyMate
               knowledge base.
             </p>
+
           </div>
 
           <div className="upload-controls">
@@ -471,7 +469,7 @@ function App() {
             Chat Messages
         ========================= */}
 
-        <div className="messages">
+        <section className="messages">
 
           {messages.length === 0 && (
             <div className="welcome">
@@ -557,9 +555,7 @@ function App() {
             </div>
           ))}
 
-          {/* =========================
-              Loading
-          ========================= */}
+          {/* Loading */}
 
           {loading && (
             <div className="message assistant">
@@ -575,11 +571,15 @@ function App() {
             </div>
           )}
 
-        </div>
+        </section>
 
-        {/* =========================
-            Question Input
-        ========================= */}
+      </main>
+
+      {/* =========================
+          Fixed Question Input
+      ========================= */}
+
+      <div className="input-bar">
 
         <div className="input-area">
 
@@ -601,18 +601,32 @@ function App() {
             rows="2"
           />
 
-          <button
-            onClick={askQuestion}
-            disabled={
-              loading || !question.trim()
-            }
-          >
-            {loading ? "..." : "Ask"}
-          </button>
+          <div className="input-buttons">
+
+            <button
+              className="ask-button"
+              onClick={askQuestion}
+              disabled={
+                loading || !question.trim()
+              }
+            >
+              {loading ? "..." : "Ask"}
+            </button>
+
+            <button
+              className="clear-button"
+              onClick={clearChat}
+              disabled={messages.length === 0}
+            >
+              Clear Chat
+            </button>
+
+          </div>
 
         </div>
 
-      </main>
+      </div>
+
     </div>
   );
 }

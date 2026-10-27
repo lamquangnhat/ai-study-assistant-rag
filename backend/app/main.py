@@ -62,7 +62,7 @@ app.add_middleware(
 # =========================
 
 DOCUMENTS_DIR = Path(
-    "../data/documents"
+    "/app/data/documents"
 )
 
 DOCUMENTS_DIR.mkdir(
@@ -225,6 +225,9 @@ def delete_document(
     filename: str,
 ):
 
+    # Only keep the filename.
+    # Never accept or use a local path
+    # from the user's computer.
     safe_filename = Path(
         filename
     ).name
@@ -243,12 +246,18 @@ def delete_document(
             detail="Document not found.",
         )
 
-    # Remove chunks from ChromaDB
+    # =================================
+    # Remove StudyMate's indexed data
+    # =================================
+
     delete_chunks_by_source(
         safe_filename
     )
 
-    # Remove physical PDF
+    # =================================
+    # Remove StudyMate's PDF copy
+    # =================================
+
     file_path = (
         DOCUMENTS_DIR / safe_filename
     )
@@ -256,9 +265,17 @@ def delete_document(
     if file_path.exists():
         file_path.unlink()
 
+    # =================================
+    # Important:
+    # The original PDF on the user's
+    # computer is never accessed or deleted.
+    # =================================
+
     return {
         "filename": safe_filename,
         "message": (
-            "Document deleted successfully."
+            "Document removed from "
+            "StudyMate AI. "
+            "Your original PDF was not affected."
         ),
     }

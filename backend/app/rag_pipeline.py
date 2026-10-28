@@ -6,6 +6,66 @@ from app.llm_service import generate_answer
 DISTANCE_THRESHOLD = 1.5
 
 
+# ==========================================
+# Query Expansion
+# ==========================================
+
+QUERY_EXPANSIONS = {
+    "rag": "Retrieval-Augmented Generation",
+    "ml": "Machine Learning",
+    "ai": "Artificial Intelligence",
+    "llm": "Large Language Model",
+    "llms": "Large Language Models",
+    "nlp": "Natural Language Processing",
+    "db": "Database",
+    "api": "Application Programming Interface",
+    "apis": "Application Programming Interfaces",
+    "cnn": "Convolutional Neural Network",
+    "rnn": "Recurrent Neural Network",
+    "ann": "Artificial Neural Network",
+}
+
+
+def expand_query(
+    question: str,
+) -> str:
+    """
+    Expand short questions and common abbreviations
+    to improve semantic retrieval.
+
+    The original user question is preserved.
+    Expansion is only used for retrieval.
+    """
+
+    normalized_question = (
+        question.strip().lower()
+    )
+
+    # Remove common punctuation when checking
+    # whether the question is a short keyword.
+    lookup_term = normalized_question.rstrip(
+        "?!.,:;"
+    ).strip()
+
+    # Exact abbreviation match
+    if lookup_term in QUERY_EXPANSIONS:
+
+        expansion = QUERY_EXPANSIONS[
+            lookup_term
+        ]
+
+        return (
+            f"{question} "
+            f"{expansion}"
+        )
+
+    return question
+
+
+# ==========================================
+# Build Retrieval Query
+# ==========================================
+
 def build_retrieval_query(
     question: str,
     conversation_history: list[dict],
@@ -14,11 +74,18 @@ def build_retrieval_query(
     Build a retrieval query using the current question
     and previous user messages.
 
-    This helps resolve follow-up questions such as:
+    Short questions and common abbreviations are expanded
+    before semantic search.
+
+    This also helps resolve follow-up questions such as:
     "What are its main components?"
     where "its" refers to a topic from earlier
     in the conversation.
     """
+
+    expanded_question = expand_query(
+        question
+    )
 
     previous_questions = []
 
@@ -34,14 +101,19 @@ def build_retrieval_query(
     previous_questions = previous_questions[-3:]
 
     if not previous_questions:
-        return question
+        return expanded_question
 
     retrieval_query = "\n".join(
-        previous_questions + [question]
+        previous_questions
+        + [expanded_question]
     )
 
     return retrieval_query
 
+
+# ==========================================
+# Answer Question
+# ==========================================
 
 def answer_question(
     question: str,

@@ -224,14 +224,39 @@ def list_documents():
 def delete_document(
     filename: str,
 ):
+    # =================================
+    # Keep filename only
+    # =================================
+    safe_filename = Path(filename).name
 
-    # Only keep the filename.
-    # Never accept or use a local path
-    # from the user's computer.
-    safe_filename = Path(
-        filename
-    ).name
+    # Reject invalid filenames
+    if not safe_filename or safe_filename in {".", ".."}:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid document filename.",
+        )
 
+    documents_dir = DOCUMENTS_DIR.resolve()
+    file_path = (
+        documents_dir / safe_filename
+    ).resolve()
+
+    # =================================
+    # Security check
+    # Only allow deletion inside
+    # StudyMate's documents directory.
+    # =================================
+    try:
+        file_path.relative_to(documents_dir)
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid document path.",
+        )
+
+    # =================================
+    # Check StudyMate document list
+    # =================================
     documents = get_documents()
 
     document_exists = any(
@@ -249,28 +274,22 @@ def delete_document(
     # =================================
     # Remove StudyMate's indexed data
     # =================================
-
     delete_chunks_by_source(
         safe_filename
     )
 
     # =================================
-    # Remove StudyMate's PDF copy
+    # Remove ONLY StudyMate's PDF copy
     # =================================
-
-    file_path = (
-        DOCUMENTS_DIR / safe_filename
-    )
-
     if file_path.exists():
         file_path.unlink()
 
     # =================================
-    # Important:
-    # The original PDF on the user's
-    # computer is never accessed or deleted.
+    # IMPORTANT:
+    # The original PDF selected by the
+    # user on their computer is never
+    # accessed or deleted.
     # =================================
-
     return {
         "filename": safe_filename,
         "message": (

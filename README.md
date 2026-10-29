@@ -1,34 +1,44 @@
 # StudyMate AI
 
-An AI-powered study assistant that uses Retrieval-Augmented Generation (RAG) to answer questions based on uploaded lecture materials.
+**StudyMate AI** is an AI-powered study assistant that uses **Retrieval-Augmented Generation (RAG)** to answer questions from uploaded lecture materials.
 
-StudyMate AI allows students to upload PDF lectures, retrieve relevant study content using semantic search, and ask questions through a conversational chat interface. Answers are generated using retrieved course material and include source references to the relevant pages and chunks.
+Students can upload PDF lectures, retrieve relevant content using semantic search, and ask questions through a conversational chat interface. Answers are generated from retrieved study materials and include source references such as the document name, page, and chunk.
+
+## Live Demo
+
+- **Frontend:** https://studymate-ai-jzsm.onrender.com/
+- **Backend API:** https://ai-study-assistant-rag-9tab.onrender.com/
+- **Swagger API Docs:** https://ai-study-assistant-rag-9tab.onrender.com/docs
+- **GitHub:** https://github.com/lamquangnhat/ai-study-assistant-rag
+
+> The deployed version is a student-scale portfolio/demo application running on Render.
 
 ## Features
 
 - Upload lecture PDFs
 - Extract text from PDF documents
-- Split documents into overlapping text chunks
+- Split documents into overlapping chunks
 - Generate semantic embeddings using Sentence Transformers
-- Store and search embeddings using ChromaDB
-- Retrieve relevant lecture content using semantic search
-- Generate answers using Gemini
-- Conversation-aware question retrieval
-- Source and page references for generated answers
+- Store and search embeddings with ChromaDB
+- Semantic retrieval of relevant lecture content
+- Gemini-powered answer generation
+- Conversation-aware retrieval for follow-up questions
+- Source and page references for answers
 - View uploaded study materials
 - Delete indexed documents
-- REST API built with FastAPI
-- React frontend
+- FastAPI REST API
+- React + Vite frontend
 - Dockerized frontend and backend
-- Automated evaluation and backend tests
+- Automated backend tests and RAG evaluation
+- Production deployment with Render
 
 ## Architecture
 
 ```mermaid
 flowchart TD
     A[Student] --> B[React Frontend]
-
     B -->|Upload PDF| C[FastAPI Backend]
+
     C --> D[PDF Processing]
     D --> E[Text Chunking]
     E --> F[Sentence Transformer]
@@ -42,13 +52,11 @@ flowchart TD
     G --> K[Relevant Chunks]
     K --> L[RAG Pipeline]
     L --> M[Gemini LLM]
-    M --> N[Answer + Source References]
+    M --> N[Answer + Sources]
     N --> B
 ```
 
 ## RAG Pipeline
-
-StudyMate AI follows a Retrieval-Augmented Generation pipeline.
 
 ### 1. Document Ingestion
 
@@ -62,18 +70,16 @@ PDF text extraction
 Page-level text
 ```
 
-Each page keeps its page number so that retrieved information can later be traced back to the original lecture.
+Page numbers are preserved so retrieved information can be traced back to the original lecture.
 
 ### 2. Text Chunking
 
-Extracted page text is divided into overlapping chunks.
+Extracted text is divided into overlapping chunks.
 
-The current configuration uses:
+Current configuration:
 
-- Chunk size: 1000 characters
-- Chunk overlap: 150 characters
-
-The overlap helps preserve context between neighboring chunks.
+- **Chunk size:** 1000 characters
+- **Chunk overlap:** 150 characters
 
 ```text
 Lecture text
@@ -93,13 +99,13 @@ Each chunk stores metadata including:
 
 ### 3. Embedding Generation
 
-Each chunk is converted into a numerical vector using:
+Each chunk is converted into a vector using:
 
 ```text
 all-MiniLM-L6-v2
 ```
 
-The resulting embeddings have 384 dimensions.
+The resulting embeddings have **384 dimensions**.
 
 ```text
 Text chunk
@@ -111,23 +117,19 @@ Sentence Transformer
 
 ### 4. Vector Storage
 
-Embeddings are stored in ChromaDB.
-
-The application uses the collection:
+Embeddings are stored in ChromaDB using the collection:
 
 ```text
 lecture_documents
 ```
 
-When a document with the same source is uploaded again, its previous chunks are removed before the new chunks are indexed. This prevents stale document data from remaining in the vector database.
+When the same document is uploaded again, its previous chunks are removed before re-indexing to prevent stale vector data.
 
-### 5. Query Retrieval
+### 5. Semantic Retrieval
 
-When a student asks a question, StudyMate AI converts the question into an embedding and searches ChromaDB for the most semantically similar chunks.
+When a student asks a question, the question is converted into an embedding and searched against ChromaDB.
 
-The system currently retrieves the top 3 results.
-
-A distance threshold is also used to prevent irrelevant material from being passed to the language model.
+The current system retrieves the top 3 results and applies a relevance distance threshold.
 
 ```text
 User question
@@ -141,7 +143,7 @@ Top 3 relevant chunks
 Relevance filtering
 ```
 
-The current retrieval distance threshold is:
+Current retrieval distance threshold:
 
 ```text
 1.5
@@ -149,9 +151,9 @@ The current retrieval distance threshold is:
 
 ### 6. Conversation-Aware Retrieval
 
-StudyMate AI also supports conversational follow-up questions.
+StudyMate AI supports follow-up questions.
 
-For example:
+Example:
 
 ```text
 User:
@@ -164,29 +166,15 @@ User:
 What are its main components?
 ```
 
-The second question may not contain enough context by itself.
+The second question may not contain enough context by itself. The system therefore combines recent user questions with the current question before generating the retrieval embedding.
 
-The system therefore combines recent user questions with the current question before generating the retrieval embedding.
-
-```text
-Previous questions
-       +
-Current question
-       ↓
-Retrieval query
-       ↓
-Embedding
-       ↓
-Semantic search
-```
-
-The system keeps the most recent three user questions for retrieval.
+The most recent **three user questions** are considered for retrieval context.
 
 ### 7. Context Construction
 
-Retrieved chunks that satisfy the relevance threshold are combined into a context block.
+Relevant chunks are combined into a context block.
 
-Each context section contains source metadata such as:
+Each section includes source metadata such as:
 
 ```text
 Source: Week01_AI_Study_Assistant_Lecture.pdf
@@ -202,21 +190,9 @@ The retrieved context is passed to Gemini together with:
 - Retrieved study material
 - RAG-specific instructions
 
-The model is instructed to use the provided study materials as the primary factual source and avoid inventing information.
+The model is instructed to prioritize the provided study materials and avoid inventing unsupported information.
 
-```text
-Retrieved context
-      +
-Conversation history
-      +
-Current question
-      ↓
-    Gemini
-      ↓
-Generated answer
-```
-
-If the retrieved study materials do not contain enough information to answer the question, the system instructs the model to respond:
+If the retrieved materials do not contain enough information, the system uses:
 
 ```text
 I could not find the answer in the provided study materials.
@@ -226,7 +202,7 @@ I could not find the answer in the provided study materials.
 
 The backend returns source information together with the generated answer.
 
-Each source contains:
+Each source can include:
 
 - Filename
 - Page number
@@ -246,7 +222,7 @@ This allows the frontend to show where the answer came from.
 
 ### Backend
 
-- Python
+- Python 3.11
 - FastAPI
 - Uvicorn
 - Pydantic
@@ -266,7 +242,7 @@ This allows the frontend to show where the answer came from.
 ### Testing
 
 - Pytest
-- Backend unit and integration tests
+- Backend unit/integration tests
 - RAG evaluation
 
 ### Deployment
@@ -274,6 +250,7 @@ This allows the frontend to show where the answer came from.
 - Docker
 - Docker Compose
 - Nginx
+- Render
 
 ## Project Structure
 
@@ -329,8 +306,6 @@ AI Study Assistant (RAG)/
 
 ## API Endpoints
 
-The FastAPI backend exposes the following endpoints.
-
 | Method | Endpoint | Description |
 |---|---|---|
 | GET | `/` | Health/root endpoint |
@@ -339,19 +314,23 @@ The FastAPI backend exposes the following endpoints.
 | GET | `/documents` | List indexed documents |
 | DELETE | `/documents/{filename}` | Delete an indexed document |
 
-FastAPI also provides automatically generated API documentation through Swagger UI.
-
-When running the application locally or with Docker, Swagger UI is available at:
+Swagger UI is automatically generated by FastAPI:
 
 ```text
 http://localhost:8000/docs
+```
+
+For the deployed backend:
+
+```text
+https://ai-study-assistant-rag-9tab.onrender.com/docs
 ```
 
 ## Getting Started
 
 ### Requirements
 
-For Docker-based setup:
+For Docker:
 
 - Docker
 - Docker Compose
@@ -372,11 +351,21 @@ Create a `.env` file in the project root:
 GEMINI_API_KEY=your_api_key_here
 ```
 
-Do not commit `.env` or API keys to GitHub.
+The API key must not be committed to GitHub.
+
+The frontend uses:
+
+```env
+VITE_API_URL=http://127.0.0.1:8000
+```
+
+For production, the frontend is configured with the deployed backend URL through the Render environment variable:
+
+```text
+VITE_API_URL=https://ai-study-assistant-rag-9tab.onrender.com
+```
 
 ### Run with Docker
-
-Docker is the recommended way to run the complete application.
 
 From the project root:
 
@@ -390,31 +379,21 @@ Start the application:
 docker compose up -d
 ```
 
-Check the running services:
+Check services:
 
 ```powershell
 docker compose ps
 ```
 
-The frontend will be available at:
+Local URLs:
 
 ```text
-http://localhost:5173
+Frontend: http://localhost:5173
+Backend:  http://localhost:8000
+Swagger:  http://localhost:8000/docs
 ```
 
-The backend will be available at:
-
-```text
-http://localhost:8000
-```
-
-Swagger API documentation will be available at:
-
-```text
-http://localhost:8000/docs
-```
-
-To stop the application:
+Stop the application:
 
 ```powershell
 docker compose down
@@ -422,40 +401,33 @@ docker compose down
 
 ### Local Backend Development
 
-If you want to run the backend directly without Docker:
-
 Move into the backend directory:
 
 ```powershell
 cd backend
 ```
 
-Activate the Python virtual environment from the project root:
+Activate the virtual environment:
 
 ```powershell
 ..\.venv\Scripts\Activate.ps1
 ```
 
-Install dependencies from the project root:
+Install dependencies:
 
 ```powershell
 cd ..
 pip install -r requirements.txt
 ```
 
-Then return to the backend directory:
-
-```powershell
-cd backend
-```
-
 Run FastAPI:
 
 ```powershell
+cd backend
 uvicorn app.main:app --reload
 ```
 
-The API will be available at:
+Backend:
 
 ```text
 http://localhost:8000
@@ -481,36 +453,84 @@ Run the development server:
 npm run dev
 ```
 
-The frontend will be available at:
+Frontend:
 
 ```text
 http://localhost:5173
 ```
 
-## Docker
+## Docker Deployment
 
 The project includes Docker support for running the frontend and backend together.
-
-The Docker setup contains:
 
 ```text
 React Frontend
       ↓
-Nginx
+    Nginx
       ↓
 FastAPI Backend
       ↓
-RAG Pipeline
+  RAG Pipeline
       ↓
 ChromaDB + Gemini
 ```
 
-The backend also uses persistent Docker volumes for:
+The backend Docker image uses **CPU-only PyTorch** to keep the deployment lightweight and suitable for the available Render instance resources.
 
-- ChromaDB data
-- Uploaded documents
+For local Docker development, ChromaDB and uploaded documents are bind-mounted:
 
-This allows indexed data and uploaded files to persist across container restarts.
+```yaml
+volumes:
+  - ./chroma_db:/app/chroma_db
+  - ./data:/app/data
+```
+
+This allows local indexed data and uploaded files to persist across local container restarts.
+
+## Production Deployment
+
+The current production deployment uses **Render**:
+
+```text
+                    Render
+                      │
+          ┌───────────┴───────────┐
+          │                       │
+    Static Frontend          Backend Web Service
+      React + Nginx               FastAPI
+          │                       │
+          └───────────┬───────────┘
+                      │
+                RAG Pipeline
+                      │
+              ChromaDB + Gemini
+```
+
+Production services:
+
+- Frontend: Render Static Site
+- Backend: Render Web Service
+- Backend runtime: Docker
+- Frontend server: Nginx
+- AI generation: Google Gemini
+
+### Production Environment
+
+The backend requires:
+
+```text
+GEMINI_API_KEY
+```
+
+The frontend requires:
+
+```text
+VITE_API_URL=https://ai-study-assistant-rag-9tab.onrender.com
+```
+
+CORS is configured to allow the production frontend together with local development.
+
+> **Important:** The current Render Free deployment uses an ephemeral filesystem. Uploaded production documents and local ChromaDB data should therefore be treated as demo/temporary data rather than permanent cloud storage.
 
 ## Example Usage
 
@@ -518,7 +538,7 @@ This allows indexed data and uploaded files to persist across container restarts
 
 Upload a PDF through the StudyMate AI interface.
 
-The backend will:
+The backend performs:
 
 ```text
 PDF
@@ -540,25 +560,27 @@ For example:
 What is RAG?
 ```
 
-The system retrieves relevant lecture chunks and sends them to Gemini.
-
-Example response:
+The system:
 
 ```text
-RAG stands for Retrieval-Augmented Generation.
-
-It is a system that first retrieves relevant information
-from an external knowledge base and then provides that
-context to a language model to generate an answer.
+Question
+ ↓
+Query embedding
+ ↓
+Semantic retrieval
+ ↓
+Relevant lecture chunks
+ ↓
+Gemini
+ ↓
+Answer + sources
 ```
 
-The response also includes source information such as the lecture filename and page number.
+The response includes source information such as the lecture filename and page number.
 
 ## Evaluation and Testing
 
-The project includes backend tests covering major components of the RAG system.
-
-Testing areas include:
+The project includes tests covering major components of the RAG system:
 
 - PDF document processing
 - Text chunking
@@ -567,34 +589,38 @@ Testing areas include:
 - Document ingestion
 - Gemini integration
 - RAG pipeline behavior
+- Conversation-aware follow-up questions
 
-The project also includes an evaluation suite for testing conversational follow-up questions.
-
-Run the test suite with:
+Run the test suite:
 
 ```powershell
 pytest
+```
+
+The conversation-aware RAG evaluation includes a test for follow-up questions such as:
+
+```text
+Question 1 → What is RAG?
+Question 2 → What are its main components?
 ```
 
 ## Engineering Decisions
 
 ### Why RAG?
 
-A general-purpose language model does not automatically know the contents of a student's private lecture materials.
+A general-purpose language model does not automatically know the contents of a student's lecture materials.
 
-RAG allows the system to retrieve relevant course content before generating an answer.
-
-This reduces the need to fine-tune a model for every new collection of lecture documents.
+RAG retrieves relevant course content before generating an answer, allowing the same system to work with different collections of lecture documents without fine-tuning a model for every course.
 
 ### Why ChromaDB?
 
 ChromaDB provides a lightweight vector database suitable for a student-scale RAG application.
 
-It allows lecture embeddings to be stored and searched using semantic similarity.
+It supports storing and searching lecture embeddings using semantic similarity.
 
 ### Why Sentence Transformers?
 
-`all-MiniLM-L6-v2` provides relatively lightweight sentence embeddings while producing useful semantic representations for document retrieval.
+`all-MiniLM-L6-v2` provides lightweight sentence embeddings that are suitable for semantic retrieval while keeping the application practical for local development and low-resource deployment.
 
 ### Why Conversation-Aware Retrieval?
 
@@ -606,25 +632,26 @@ What are its main components?
 
 may be difficult to retrieve accurately without knowing what "its" refers to.
 
-Including recent user questions helps provide additional retrieval context.
+Including recent user questions provides additional context for retrieval.
 
 ### Why Source References?
 
-Showing the document, page, and chunk used for retrieval makes the system more transparent and helps students verify the information.
+Showing the document, page, and chunk used for retrieval makes the system more transparent and allows students to verify the source material.
 
 ## Current Limitations
 
-- The system currently focuses on text-based PDF content.
-- Image-heavy or scanned PDFs may require OCR support.
-- The vector database is currently local rather than hosted.
-- The application does not currently implement user authentication.
+- The system focuses on text-based PDF content.
+- Image-heavy or scanned PDFs may require OCR.
+- The deployed Render filesystem is ephemeral.
+- The current application is designed as a single-user/student-scale portfolio application and does not implement user authentication or multi-user data isolation.
 - Retrieval quality depends on document quality and chunking strategy.
-- The system currently uses a fixed retrieval threshold.
-- The frontend API URL is currently hard-coded for local development.
+- The retrieval threshold is currently fixed.
+- ChromaDB is local to the application environment rather than a hosted vector database.
+- Conversation history is handled within the current application flow rather than stored in a dedicated persistent database.
 
 ## Future Improvements
 
-Potential future improvements include:
+Possible future improvements include:
 
 - OCR support for scanned lecture PDFs
 - Better chunking strategies
@@ -632,34 +659,45 @@ Potential future improvements include:
 - Reranking retrieved documents
 - Streaming LLM responses
 - User authentication
+- Multi-user data isolation
 - Persistent conversation storage
-- Cloud deployment
 - Hosted vector database
+- Persistent cloud document storage
 - Improved evaluation metrics
 - More advanced citation handling
 - Configurable retrieval parameters
-- Multi-user study workspaces
+
+These are considered future extensions rather than requirements for the current completed version.
 
 ## Project Status
 
-StudyMate AI currently includes:
+**StudyMate AI — Completed student RAG project**
 
-- PDF ingestion
-- Document chunking
-- Semantic embeddings
-- Vector search
-- Retrieval-Augmented Generation
-- Gemini-powered generation
-- Conversation-aware retrieval
-- Source attribution
-- PDF upload
-- Document management
-- React frontend
-- FastAPI backend
-- Docker deployment
-- Automated testing
+Current completed scope:
 
-The project is currently in the documentation and portfolio preparation stage.
+- [x] Project setup
+- [x] PDF processing
+- [x] Text chunking
+- [x] Embeddings
+- [x] ChromaDB vector storage
+- [x] Semantic search
+- [x] FastAPI backend
+- [x] Gemini integration
+- [x] RAG pipeline
+- [x] Conversation-aware retrieval
+- [x] RAG evaluation
+- [x] React frontend
+- [x] Frontend ↔ backend integration
+- [x] PDF upload
+- [x] Chat and conversation UI
+- [x] Source/citation display
+- [x] Error handling
+- [x] End-to-end testing
+- [x] Docker
+- [x] Production deployment
+- [x] README and architecture documentation
+
+The project is intentionally considered **complete at this scope**. Multi-user authentication, persistent cloud storage, and other production-scale features are outside the current version.
 
 ## License
 
